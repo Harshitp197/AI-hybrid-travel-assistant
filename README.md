@@ -33,15 +33,15 @@ User Query: The user's question is received by the main chat loop.
 
 Local Embedding: The query is converted into a vector embedding locally using a SentenceTransformer model.
 
-Hybrid Retrieval (Parallel):
+Hybrid Retrieval:
 
-Vector Search (Pinecone): The query embedding is used to find semantically similar items (cities, attractions) from the Pinecone vector database.
+Vector Search (Pinecone): The query embedding is used to find semantically similar items from the Pinecone vector database.
 
-Graph Search (Neo4j): The IDs from the Pinecone results are used to run an intelligent Cypher query in Neo4j, retrieving factual relationships and connections.
+Graph Search (Neo4j): The IDs from the Pinecone results are used to run an intelligent Cypher query in Neo4j, retrieving factual relationships.
 
-Context Augmentation & Prompting: The retrieved data from both databases, along with a summary and a sophisticated system prompt, are compiled into a rich context.
+Context Augmentation & Prompting: The retrieved data, along with a summary and a sophisticated system prompt, are compiled into a rich context.
 
-LLM Reasoning (Groq): This context is sent to a high-speed LLM on Groq. The model uses Chain-of-Thought reasoning to first generate a plan and then write the final, coherent answer.
+LLM Reasoning (Groq): This context is sent to a high-speed LLM on Groq to generate a plan and then the final, coherent answer.
 
 Response to User: The final answer is presented to the user.
 
@@ -67,9 +67,9 @@ pinecone-client
 
 neo4j
 
-tqdm (for progress bars)
+tqdm
 
-Environment: Python 3.12, venv for dependency management.
+Environment: Python 3.12, venv
 
 ⚙️ Setup and Installation
 
@@ -106,26 +106,22 @@ Ensure you have a Neo4j database instance running (e.g., via Neo4j Desktop) and 
 Execute the scripts in the following order.
 
 Step 1: Load Data into Neo4j
-This script populates your graph database with the travel data.
 
 python load_to_neo4j.py
 
 
 Step 2: Upload Embeddings to Pinecone
-This script generates local embeddings and uploads them to your Pinecone index. The first run will download the embedding model.
-(Note: Ensure any previous vietnam-travel index in Pinecone is deleted if you are re-running this with new data.)
+(Note: Ensure any previous vietnam-travel index in Pinecone is deleted if you are re-running this.)
 
 python pinecone_upload.py
 
 
 Step 3: (Optional) Visualize the Graph
-This script generates an interactive HTML file (neo4j_viz.html) to visualize your graph.
 
 python visualize_graph.py
 
 
 Step 4: Run the Chat Assistant
-Start the interactive chatbot.
 
 export TOKENIZERS_PARALLELISM=false # Recommended to hide tokenizer warnings
 python hybrid_chat.py
@@ -138,7 +134,9 @@ You can then ask questions like, "create a romantic 4 day itinerary for Vietnam"
 Here is a sample interaction with the Odyssey travel assistant.
 
 User:
+
 create a 2 day itinerary for vietnam i want to visit beach also
+
 
 Odyssey's Response:
 
