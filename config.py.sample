@@ -1,0 +1,20 @@
+# Configuration file for the AI Hybrid Chat Assistant
+# Copy this file to config.py and fill in your actual credentials.
+
+# --- Groq API Configuration ---
+# Get your free key from: https://console.groq.com/keys
+GROQ_API_KEY = "YOUR_GROQ_API_KEY_HERE"
+
+# --- Pinecone API Configuration ---
+# Get your free key from: https://app.pinecone.io/
+PINECONE_API_KEY = "YOUR_PINECONE_API_KEY_HERE"
+PINECONE_INDEX_NAME = "vietnam-travel"
+PINECONE_VECTOR_DIM = 384 # Based on the 'all-MiniLM-L6-v2' model
+PINECONE_CLOUD = "aws"
+PINECONE_REGION = "us-east-1" # Common free tier region
+
+# --- Neo4j Database Configuration ---
+# Credentials for your local or cloud Neo4j instance
+NEO_URI = "bolt://localhost:7687"
+NEO_USER = "neo4j"
+NEO_PASSWORD = "your_neo4j_password"
